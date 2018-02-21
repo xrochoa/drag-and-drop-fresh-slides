@@ -1,49 +1,129 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+    <title>reveal.js</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+    <style>
+        .reveal pre {
+            width: auto !important;
+        }
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section data-markdown>
+            <textarea data-template>
+                # Drag and Drop in Angular
+                Xavier Reyes Ochoa
+            </textarea>
+        </section>
+        <section data-markdown>
+            <script type="text/template">
+                ### Outline
+                ---
+                - HTML5 Drag and Drop API (Events, Passing data, Choosing an image, Effects, Zones) <!-- .element: class="fragment fade-right" data-fragment-index="1" -->
+                - Drag and Drop in Angular <!-- .element: class="fragment fade-right" data-fragment-index="2" -->
+                - Browser Inconsistencies <!-- .element: class="fragment fade-right" data-fragment-index="3" -->
+                - Custom Angular Service <!-- .element: class="fragment fade-right" data-fragment-index="4" -->
+                - Available Libraries and Polyfills <!-- .element: class="fragment fade-right" data-fragment-index="5" -->
+            </script>
+        </section>
+        <section>
+            <section data-markdown>
+            <textarea data-template>
+                ## HTML5 Drag and Drop API
+            </textarea>
+            </section>
+            <section data-markdown>
+            <textarea data-template>
+                ### Enabling Drag and Drop
+                1. Use the *draggable* attribute
+                ```
+                <div id="draggable" draggable="true"></div>
+                ```
+                2. Listen to drag events <!-- .element: class="fragment fade-right" -->
+                ```
+                document.getElementById('draggable').addEventListener('dragstart', e => {
+                    // do something
+                });
+                ```
+             </textarea>
+            </section>
+            <section data-markdown>
+            <textarea data-template>
+                ### Events
+                * dragstart <!-- .element: class="fragment fade-right" -->
+                * drag <!-- .element: class="fragment fade-right" -->
+                * dragenter <!-- .element: class="fragment fade-right" -->
+                * dragover <!-- .element: class="fragment fade-right" -->
+                * dragleave <!-- .element: class="fragment fade-right" -->
+                * drop <!-- .element: class="fragment fade-right" -->
+                * dragend <!-- .element: class="fragment fade-right" -->
+            </textarea>
+            </section>
+        </section>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+        <section data-markdown>
+            <textarea data-template>
+                ## Drag and Drop in Angular
+            </textarea>
+        </section>
+        <section data-markdown>
+            <textarea data-template>
+                ## Browser Inconsistencies
+            </textarea>
+        </section>
+        <section data-markdown>
+            <textarea data-template>
+                ## Custom Angular Service
+            </textarea>
+        </section>
+        <section data-markdown>
+            <textarea data-template>
+                ## Available Libraries and Polyfills
+            </textarea>
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+</script>
+</body>
 </html>
