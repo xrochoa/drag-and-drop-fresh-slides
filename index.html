@@ -25,6 +25,15 @@
         .reveal pre {
             width: auto !important;
         }
+
+        .reveal pre.in {
+            text-align: center !important;
+            box-shadow: none !important;
+        }
+
+        .reveal pre.in code {
+            display: inline !important;
+        }
     </style>
 </head>
 <body>
@@ -144,13 +153,83 @@
                 add gif
             </textarea>
         </section>
-        <section data-markdown>
+        <!-- Browser Inconsistencies -->
+        <section>
+            <section data-markdown>
             <textarea data-template>
                 ## Browser Inconsistencies
                 drag data
                 event prevent default
                 find more
             </textarea>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ### Draggable element
+                    <pre class="in">
+                        <code>draggable="true"</code> is not enough.
+                        Firefox requires a listener for the <code>dragstart</code> event
+                    </pre>
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ### Make an element draggable
+                    <pre class="in">
+                        <code>draggable="true"</code> is not enough.
+                        Firefox requires a listener for the <code>dragstart</code> event
+                    </pre>
+                </script>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                ### Pass various types of data
+
+                ```
+                event.dataTransfer.setData("application/json", JSONObject);
+                event.dataTransfer.setData("text/plain", "text");
+                ```
+
+                <pre class="in">
+                    IE only supports <code>"text"</code> and <code>"URL"</code> types.
+                    If set to <code>"text"</code>, it interferes with text and input fields.
+                    A <code>try/catch</code> and fallback to <code>"text"</code> is a workaround.
+                </pre>
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                ### Custom drag image
+                <pre class="in">
+                    The element should be visible to the browser.
+                    The workaround is to hide image under another element.
+                    Custom drag image doesn't work in IE.
+                    The workaround is to move an image with <code>mousemove</code> event.
+                </pre>
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                ### Custom drag image
+                <pre class="in">
+                    The element should be visible to the browser.
+                    The workaround is to hide image under another element.
+                    Custom drag image doesn't work in IE.
+                    The workaround is to move an image with <code>mousemove</code> event.
+                </pre>
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                ### Enable drop
+                <pre class="in">
+                    Requires to <code>preventDefault</code> on the
+                    <code>dragenter</code> and <code>dragover</code> events.
+                    Firefox treats the drop as navigation.
+                    This requires <code>preventDefault</code> on <code>dragover</code> event.
+                </pre>
+                </textarea>
+            </section>
         </section>
         <section data-markdown>
             <textarea data-template>
