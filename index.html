@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>reveal.js</title>
+    <title>DND ANGULAR</title>
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/black.css">
@@ -42,7 +42,7 @@
     <div class="slides">
         <section data-markdown>
             <textarea data-template>
-                # Drag and Drop in Angular!!!
+                # Drag and Drop in Angular
                 Xavier Reyes Ochoa
             </textarea>
         </section>
@@ -54,7 +54,7 @@
                 - Drag and Drop in Angular <!-- .element: class="fragment fade-right" data-fragment-index="2" -->
                 - Browser Inconsistencies <!-- .element: class="fragment fade-right" data-fragment-index="3" -->
                 - Custom Angular Service <!-- .element: class="fragment fade-right" data-fragment-index="4" -->
-                - Available Libraries and Polyfills <!-- .element: class="fragment fade-right" data-fragment-index="5" -->
+                - Libraries and Polyfills <!-- .element: class="fragment fade-right" data-fragment-index="5" -->
             </script>
         </section>
         <section>
@@ -114,68 +114,120 @@
             </section>
             <section data-markdown>
             <textarea data-template>
-                ### Choose the drag effect
+                ### Handle effectAllowed and drop effect
+                - none <!-- .element: class="fragment fade-right" -->
                 - copy <!-- .element: class="fragment fade-right" -->
                 - move <!-- .element: class="fragment fade-right" -->
                 - link <!-- .element: class="fragment fade-right" -->
-
-
-                ```
-                draggableElement.addEventListener('dragstart', event => {
-                    event.dataTransfer.dropEffect = 'copy';
-                });
-                ```
+                - copyMove <!-- .element: class="fragment fade-right" -->
+                - copyLink <!-- .element: class="fragment fade-right" -->
+                - linkMove <!-- .element: class="fragment fade-right" -->
+                - all <!-- .element: class="fragment fade-right" -->
             </textarea>
             </section>
             <section data-markdown>
-            <textarea data-template>
-                ### Handle drop zone and drop effect
-                ```
-                <div id="droppable"></div>
-                ```
-                ```
-                droppableElement.addEventListener('dragover', event => {
-                    event.dataTransfer.dropEffect = 'move';
-                });
-                droppableElement.addEventListener('drop', event => {
-                     const data = event.dataTransfer.getData("text");
-                    // do something with data
-                });
-                ```
-            </textarea>
+                <textarea data-template>
+                    ### Handle effectAllowed and drop effect
+                    ```
+                    <div id="droppable"></div>
+                    ```
+                    ```
+                    droppableElement.addEventListener('dragover', event => {
+                        event.dataTransfer.effectAllowed = 'move';
+                    });
+                    droppableElement.addEventListener('dragover', event => {
+                          ev.dataTransfer.dropEffect = 'move'
+                    });
+                    ```
+
+                    <a href="https://codepen.io/SitePoint/pen/epQPNP" target="_blank">Example</a>
+
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    ### Drag Files from Desktop
+                    ```
+                    droppableElement.addEventListener('drop', event => {
+                        if (event.dataTransfer.files.length) {
+                            const fileList = event.dataTransfer.files;
+                            // do something with files
+                        }
+                    });
+                    ```
+                </textarea>
             </section>
 
         </section>
 
-        <section data-markdown>
+        <section>
+            <section data-markdown>
             <textarea data-template>
                 ## Drag and Drop in Angular
-                add snippets
-                add gif
+                <a href="http://www.xaviro.com/drag-and-drop-example/" target="_blank">Example</a>
             </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                ### Component
+                ```
+                @Component({
+                  selector: 'app-root',
+                  templateUrl: './app.component.html',
+                  styleUrls: ['./app.component.css']
+                })
+                export class AppComponent {
+                  constructor() {}
+
+                  /** DRAG EVENTS */
+                  dragstart(e) { console.log('dragstart', e); }
+                  drag(e) { console.log('drag', e); }
+                  dragend(e) { console.log('dragend', e); }
+
+                  /** DROP EVENTS */
+                  dragenter(e) { console.log('dragenter', e); }
+                  dragover(e) {
+                    e.preventDefault();
+                    console.log('dragover', e);
+                  }
+                  dragleave(e) { console.log('dragleave', e); }
+                  drop(e) { console.log('drop', e); }
+                }
+                ```
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                ### Template
+                ```
+                <div id="draggable"
+                     draggable="true"
+                     (dragstart)="dragstart($event)"
+                     (drag)="drag($event)"
+                     (dragend)="dragend($event)">
+                  <p>DRAG ME</p>
+                </div>
+                <div id="droppable"
+                     (dragenter)="dragenter($event)"
+                     (dragover)="dragover($event)"
+                     (dragleave)="dragleave($event)"
+                     (drop)="drop($event)">
+                  <p>DROP HERE</p>
+                </div>
+                ```
+                </textarea>
+            </section>
         </section>
         <!-- Browser Inconsistencies -->
         <section>
             <section data-markdown>
             <textarea data-template>
                 ## Browser Inconsistencies
-                drag data
-                event prevent default
-                find more
             </textarea>
             </section>
             <section data-markdown>
                 <script type="text/template">
                     ### Draggable element
-                    <pre class="in">
-                        <code>draggable="true"</code> is not enough.
-                        Firefox requires a listener for the <code>dragstart</code> event
-                    </pre>
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ### Make an element draggable
                     <pre class="in">
                         <code>draggable="true"</code> is not enough.
                         Firefox requires a listener for the <code>dragstart</code> event
@@ -204,17 +256,7 @@
                 <pre class="in">
                     The element should be visible to the browser.
                     The workaround is to hide image under another element.
-                    Custom drag image doesn't work in IE.
-                    The workaround is to move an image with <code>mousemove</code> event.
-                </pre>
-                </textarea>
-            </section>
-            <section data-markdown>
-                <textarea data-template>
-                ### Custom drag image
-                <pre class="in">
-                    The element should be visible to the browser.
-                    The workaround is to hide image under another element.
+
                     Custom drag image doesn't work in IE.
                     The workaround is to move an image with <code>mousemove</code> event.
                 </pre>
@@ -226,24 +268,101 @@
                 <pre class="in">
                     Requires to <code>preventDefault</code> on the
                     <code>dragenter</code> and <code>dragover</code> events.
+
                     Firefox treats the drop as navigation.
                     This requires <code>preventDefault</code> on <code>dragover</code> event.
+                </pre>
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                ### dropEffect and effectAllowed
+                <pre class="in">
+                    Doesn't work in Safari and IE.
+                </pre>
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                ### Auto scroll on top and bottom
+                <pre class="in">
+                    Doesn't work in Safari.
+                </pre>
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                ### Nested target and dragenter and dragleave
+                <pre class="in">
+                    Implemented inconsistently.
+
+                    <code>dragenter</code> will fire before or after <code>dragleave</code>
+                    depending on the browser.
+                </pre>
+                </textarea>
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                ### Custom cursor
+                <pre class="in">
+                    A drag cursor only works until the drag operation starts.
+                    Some browsers add workarounds like <code>-webkit-grabbing, -moz-grab</code>
                 </pre>
                 </textarea>
             </section>
         </section>
         <section data-markdown>
             <textarea data-template>
-                ## Custom Angular Service
-                store
-                change detection
+                ## Custom Angular Drag and Drop Service
+                ```
+                export class DragData {
+                  items: string[];
+                  type: string;
+                }
+                ```
+                ```
+                @Injectable()
+                export class DragItemsService {
+
+                  private _dragData: BehaviorSubject<DragData>;
+                  dragData$: Observable<DragData>;
+
+                  constructor() {
+                    this._dragData = new BehaviorSubject(new DragData());
+                    this.dragData$ = this._dragData.asObservable();
+                  }
+
+                  setData(data: DragData) {
+                    this._dragData.next(data);
+                  }
+                }
+                ```
             </textarea>
         </section>
         <section data-markdown>
             <textarea data-template>
-                ## Available Libraries and Polyfills
+                ## Libraries and Polyfills
+
+                - [ng2-dnd](http://akserg.github.io/ng2-webpack-demo/#/dnd)
+                - [ng2-dragula](https://valor-software.com/ng2-dragula)
+                - [ios-html5-drag-drop-shim](http://timruffles.github.io/ios-html5-drag-drop-shim/demo/)
+
             </textarea>
         </section>
+        <section data-markdown>
+            <textarea data-template>
+                ## Resources
+                - [HTML Drag and Drop API @ Mozilla](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
+                - [Drag and Drop @ Can I Use](https://caniuse.com/#feat=dragndrop)
+                - [HTML5 drag and drop browser inconsistencies](http://mereskin.github.io/dnd/)
+            </textarea>
+        </section>
+        <section data-markdown>
+            <textarea data-template>
+                # Thank you
+            </textarea>
+        </section>
+
     </div>
 </div>
 
@@ -262,10 +381,6 @@
             {
                 src: 'plugin/highlight/highlight.js', async: true, callback: function () {
                     hljs.initHighlightingOnLoad();
-
-                    // DEBUG
-                    Reveal.slide(4, 1);
-
                 }
             }
         ]
