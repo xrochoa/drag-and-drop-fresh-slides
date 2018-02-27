@@ -19,6 +19,7 @@
         link.type = 'text/css';
         link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
         document.getElementsByTagName('head')[0].appendChild(link);
+
     </script>
 
     <style>
@@ -41,7 +42,7 @@
     <div class="slides">
         <section data-markdown>
             <textarea data-template>
-                # Drag and Drop in Angular
+                # Drag and Drop in Angular!!!
                 Xavier Reyes Ochoa
             </textarea>
         </section>
@@ -260,8 +261,12 @@
             {src: 'plugin/notes/notes.js', async: true},
             {
                 src: 'plugin/highlight/highlight.js', async: true, callback: function () {
-                hljs.initHighlightingOnLoad();
-            }
+                    hljs.initHighlightingOnLoad();
+
+                    // DEBUG
+                    Reveal.slide(4, 1);
+
+                }
             }
         ]
     });

@@ -149,7 +149,18 @@ module.exports = function(grunt) {
 		retire: {
 			js: [ 'js/reveal.js', 'lib/js/*.js', 'plugin/**/*.js' ],
 			node: [ '.' ]
-		}
+		},
+
+    browserSync: {
+        bsFiles: {
+            src : './index.html'
+        },
+        options: {
+            server: {
+                baseDir: "./"
+            }
+        }
+    }
 
 	});
 
@@ -184,9 +195,13 @@ module.exports = function(grunt) {
 	grunt.registerTask( 'package', [ 'default', 'zip' ] );
 
 	// Serve presentation locally
-	grunt.registerTask( 'serve', [ 'connect', 'watch' ] );
+	grunt.registerTask( 'serve', [ 'connect', 'watch', 'browserSync' ] );
 
 	// Run tests
 	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
+
+    grunt.loadNpmTasks('grunt-browser-sync');
+
+
 
 };
