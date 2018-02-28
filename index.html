@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>DND ANGULAR</title>
+    <title>Drag and Drop in Angular</title>
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/black.css">
@@ -42,8 +42,15 @@
     <div class="slides">
         <section data-markdown>
             <textarea data-template>
-                # Drag and Drop in Angular
-                Xavier Reyes Ochoa
+                ## Drag and Drop in Angular
+                <img src="./lib/dnd.png"/>
+
+                <div style="display: flex; justify-content: center; align-items: center">
+                    <a href="http://www.xaviro.com" style="margin-right: 10px; color: white;" target="_blank">Xavier Reyes Ochoa</a>
+                    <img style="border: none; background: none; margin-right: 10px;"
+                         src="https://cdn.freshconsulting.com/wp-content/themes/fresh/dist/images/v5/fresh-logo.svg"/>
+                    <a href="http://www.freshconsulting.com" style="color: white" target="_blank">Fresh Consulting</a>
+                </div>
             </textarea>
         </section>
         <section data-markdown>
@@ -61,6 +68,7 @@
             <section data-markdown>
             <textarea data-template>
                 ## HTML5 Drag and Drop API
+                <img src="./lib/cat.jpg"/>
             </textarea>
             </section>
             <section data-markdown>
@@ -132,7 +140,7 @@
                     <div id="droppable"></div>
                     ```
                     ```
-                    droppableElement.addEventListener('dragover', event => {
+                    droppableElement.addEventListener('dragstart', event => {
                         event.dataTransfer.effectAllowed = 'move';
                     });
                     droppableElement.addEventListener('dragover', event => {
@@ -164,7 +172,7 @@
             <section data-markdown>
             <textarea data-template>
                 ## Drag and Drop in Angular
-                <a href="http://www.xaviro.com/drag-and-drop-example/" target="_blank">Example</a>
+                <img src="./lib/dnd.png"/>
             </textarea>
             </section>
             <section data-markdown>
@@ -215,6 +223,8 @@
                   <p>DROP HERE</p>
                 </div>
                 ```
+
+                <a href="http://www.xaviro.com/drag-and-drop-example/" target="_blank">Example</a>
                 </textarea>
             </section>
         </section>
@@ -223,6 +233,7 @@
             <section data-markdown>
             <textarea data-template>
                 ## Browser Inconsistencies
+                <img src="./lib/angry.jpg"/>
             </textarea>
             </section>
             <section data-markdown>
@@ -355,8 +366,16 @@
 
                 - <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API" target="_blank">HTML Drag and Drop API @ Mozilla</a>
                 - <a href="https://caniuse.com/#feat=dragndrop" target="_blank">Drag and Drop @ Can I Use</a>
-                - <a href="http://mereskin.github.io/dnd/" target="_blank">HTML5 drag and drop browser inconsistencies</a>
+                - <a href="http://mereskin.github.io/dnd/"
+                     target="_blank">HTML5 drag and drop browser inconsistencies</a>
+                - <a href="https://soundcloud.com/xavi-ro/drag-and-dro-it-feat-punkty" target="_blank">Drag and Drop - The Original Song</a>
 
+            </textarea>
+        </section>
+        <section data-markdown>
+            <textarea data-template>
+                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/406309371&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                # wait for the drop...
             </textarea>
         </section>
         <section data-markdown>
